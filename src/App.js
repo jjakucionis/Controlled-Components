@@ -3,7 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    echoText: '',
+  }
+
+  manageInput = (t) => {
+    this.setState({
+    	echoText: t,
+    })
+  }
+
   render() {
+    const textToEcho = this.state.echoText === "" ? "This should mirror the text you typed into the input field." : this.state.echoText;
     return (
       <div className="App">
         <header className="App-header">
@@ -11,9 +22,14 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-          <input type="text" placeholder="Say Something" />
+          <input 
+			type="text" 
+			placeholder="Say Something" 
+			onChange={(event) => this.manageInput(event.target.value)}
+			/>
           <p className="echo">Echo:</p>
-          <p>This should mirror the text you typed into the input field.</p>
+          { }
+          <p>{textToEcho}</p>
         </div>
       </div>
     );
